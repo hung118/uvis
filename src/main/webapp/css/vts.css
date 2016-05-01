@@ -1,0 +1,267 @@
+/* !!! This site uses an elastic layout. Most browsers use 16px as the default font, so a 946px design = 946/16 = 59.125em  !!! */
+
+/* ------------------------------------------------   HTML   ------------------------------------------------ */
+body { 
+	font-family:Arial, Helvetica, sans-serif;
+	color: #000;
+	margin:0;
+	padding:0px;
+	font-size:15px;
+	background-color: #ccc;
+}
+
+p, td, li, a {
+	font-size:13px;
+}
+
+p {
+	margin-top:0px;
+}
+
+hr {
+	height:1px;
+	color:#74684C;
+	background-color:#8A8A8A;
+	border:0;
+}
+
+img {
+	border:none;
+	padding:0px;
+	margin:0px;
+}
+
+a {
+	font-weight: bold;
+	color:#000;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #cc0000;
+}
+
+ol {
+	margin-top:0px;
+}
+
+ul {
+	margin-top:0px;
+}
+
+li {
+	margin-bottom:.5em;
+}
+
+object, embed {
+	margin: 12px 0px;
+}
+
+td {
+	vertical-align:top;
+}
+/* ------------------------------------------------   Layout   ------------------------------------------------ */
+#wrapper {
+	/*background-color:#E6D7BC;*/
+	background-color: #FFFFFF;
+	background-repeat: repeat-y;
+	background-position: left top;
+	/* background-image:url(../images/dividers/dasnav.jpg); */
+	/*the above creates a background for secondaryNav if image is 160px wide*/
+	width:60em;
+	margin: 0 auto;
+	text-align:left;
+	box-shadow: 0 0 6px #999;
+	box-shadow: 0 0 6px rgba(0,0,0,0.5);
+
+}
+
+#branding {
+	/*background-color:#CCCCFF;*/
+	/*border:dashed 2px #00FF00;	*/
+	height:145px;
+	margin:0px;
+	padding:0px;
+	background-image: url(../images/veterans_information_system_header.png);
+	background-repeat: no-repeat;
+	position: relative;
+}
+#branding #homelink {
+	display: block;
+	position: absolute;
+	width:180px;
+	height:145px;
+	left:20px;
+	top:0;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+#uiiBanner {
+	background-image:url(../images/uii/uiiBackground.gif);
+	background-repeat:repeat-x;
+	height:31px;
+}
+
+#uiiBanner td {
+	vertical-align:middle;
+	padding:0px;
+}
+
+#uiiBanner input {
+	/*border:dotted 2px purple;*/
+	margin-right:4px
+}
+
+#uiiStage {
+	/*border:dashed blue 1px;*/
+	visibility:hidden;
+	margin-left:-1000em;
+	width:500px;
+	float:left;
+}
+
+#content {
+	/*background-color:#FF0000;*/
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width:47.5em;
+	float:right;
+}
+
+#mainContent {
+	/*background-color:#00FF00;*/
+	width:450px;
+	float:left;
+	padding-top:8px;
+	padding-right:16px;
+	padding-bottom:16px;
+	padding-left:16px;
+	/*border-left:1px #D5D5D5 solid;*/
+}
+
+#rotatingPhoto {
+	/*background-color:#00FF00;*/
+	width:416px;
+	float:right;
+	padding-top:8px;
+	/*background-color:#CCCCFF;*/
+	/*border:dashed 2px #00FF00;	*/
+	/*border-left:1px #D5D5D5 solid;*/
+}
+
+#rightContent {
+	/*background-color:#00FF00;*/
+	width:384px;
+	margin-right: 16px;
+	margin-bottom: 16px;
+	float:right;
+	padding: 8px;
+	border: 1px #CCC solid;
+	/*background-color:#CCCCFF;*/
+	/*border:dashed 2px #00FF00;	*/
+	/*border-left:1px #D5D5D5 solid;*/
+}
+
+#theAddress {
+	/*background-color:#FFCC00;*/
+	color: #FFF;
+	background: #fff url(../images/veterans_information_system_footer.png) no-repeat left top;
+	margin:0 auto;
+	font-size:13px;
+	padding:50px 15px 15px;
+}
+
+#theAddress a {
+	color: #fff;
+	font-weight: normal;
+}
+	
+#theAddress .logo {
+	float:left;
+	margin-right: 15px;
+}
+#theAddress .center {
+	text-align: center;
+}
+
+#theAddress .left {
+	float:left;
+}
+#theAddress .right {
+	float:right;
+}
+#theAddress .col35 {
+	width:50%;
+}
+#theAddress .col35 .col {
+	width:45%;
+	margin-right: 10%;
+}
+#theAddress .col35 .last {
+	margin-right: 0;
+}
+#theAddress .col20 {
+	width:25%;
+}
+#theAddress ul {
+	margin:0;
+	list-style-type: none;
+}
+#theAddress ul li {
+	padding:0;
+}
+
+
+.spacer {
+	height: 10px;
+}
+
+
+.dividerWhite {
+	background: url(../../common/images/whiteDividerBar.gif) no-repeat right center;
+	padding-right:10px;
+}
+
+.clear {
+	clear:both;
+}
+
+
+.right {
+	float:right;
+}
+
+.left {
+	float:left;
+}
+
+/* ------------------------------------------------   Custom   ------------------------------------------------ */
+
+/* skipToConent contains a link to help screen readers jump over uii and other redundant navigation and get right to the page content */
+#skipToContent {
+	/*background-color:#0000FF;*/
+	margin-left:-1000em;
+	width:500px;
+	float:left;
+}
+
+
+.handcursor{
+	cursor:pointer;
+	margin-top:5px;
+	margin-bottom:5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+
+/* others */
+#searchResult {
+	/*background-color:#00FF00;*/
+	padding-top:8px;
+	padding-right:16px;
+	padding-bottom:16px;
+	padding-left:16px;
+	/*border-left:1px #D5D5D5 solid;*/
+}
+

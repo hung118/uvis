@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pdfReport" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="148"/>
+	<import value="gov.utah.va.vts.model.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<import value="gov.utah.dts.det.util.*"/>
+	<style name="SansSerif_Normal" isDefault="true" forecolor="#000000" backcolor="#FFFFFF" fontName="SansSerif" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="SansSerif_Bold" style="SansSerif_Normal" fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SansSerif_Small" style="SansSerif_Normal" fontSize="8"/>
+	<style name="SansSerif_Large" style="SansSerif_Normal" forecolor="#660000" fontName="SansSerif" fontSize="14" isBold="true"/>
+	<style name="SansSerif_Section" style="SansSerif_Normal" mode="Opaque" forecolor="#FFFFFF" backcolor="#660000" fontName="SansSerif" fontSize="10"/>
+	<parameter name="imagePathName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="subreportDir" class="java.lang.String" isForPrompting="false"/>
+	<field name="ssn" class="java.lang.String"/>
+	<field name="verified" class="java.lang.Integer"/>
+	<field name="firstName" class="java.lang.String"/>
+	<field name="middleName" class="java.lang.String"/>
+	<field name="lastName" class="java.lang.String"/>
+	<field name="address1" class="java.lang.String"/>
+	<field name="address2" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="zip" class="java.lang.String"/>
+	<field name="mailingAddr1" class="java.lang.String"/>
+	<field name="mailingAddr2" class="java.lang.String"/>
+	<field name="mailingCity" class="java.lang.String"/>
+	<field name="mailingState" class="java.lang.String"/>
+	<field name="mailingZip" class="java.lang.String"/>
+	<field name="primaryPhone" class="java.lang.String"/>
+	<field name="altPhone" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="shareFederalVa" class="java.lang.Boolean"/>
+	<field name="dateOfBirth" class="java.util.Date"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="ethnicity" class="gov.utah.va.vts.model.Ethnicity"/>
+	<field name="decorationMedalList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="servicePeriodList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="benefitTypeList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="noteList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="noteListSize" class="java.lang.Integer"/>
+	<field name="servicePeriodListSize" class="java.lang.Integer"/>
+	<field name="decorationMedalListSize" class="java.lang.Integer"/>
+	<field name="benefitTypeListSize" class="java.lang.Integer"/>
+	<group name="test2" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="6"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="3"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement style="SansSerif_Large" x="117" y="0" width="390" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Department of Veterans Affairs]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SansSerif_Normal" x="117" y="48" width="390" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="styled"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[ReportUtil.formatDate(new Date())]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="109" height="80"/>
+				<imageExpression class="java.io.File"><![CDATA[new File($P{imagePathName})]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SansSerif_Large" x="117" y="20" width="390" height="28" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Veteran Tracking System]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="91" width="572" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="351" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="329" y="40" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{dateOfBirth} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Birth Date: " + ReportUtil.formatDate($F{dateOfBirth})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" x="0" y="152" width="572" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Decoration and Medal"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" x="0" y="20" width="191" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[ReportUtil.convertNullToBlank($F{lastName}) + ", " +
+ReportUtil.convertNullToBlank($F{firstName}) + " " +
+ReportUtil.convertNullToBlank($F{middleName})]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="172" width="572" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{decorationMedalListSize} > 0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$F{decorationMedalList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{subreportDir} + "/decorationMedalSub.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="222" width="572" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{servicePeriodListSize} > 0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$F{servicePeriodList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{subreportDir} + "/servicePeriodSub.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" positionType="Float" x="0" y="202" width="572" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Service Period"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="329" y="120" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{shareFederalVa}]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["OK to share information with Federal VA: Yes"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="0" y="60" width="315" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{mailingAddr1} != null || $F{mailingAddr2} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Mailing Address: " + ReportUtil.concat2String($F{mailingAddr1}, $F{mailingAddr2}) +
+", " + $F{mailingCity} + ", " + $F{mailingState} + " " + $F{mailingZip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="0" y="100" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{altPhone} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Alternate Phone: " + $F{altPhone}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="0" y="80" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{primaryPhone} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Primary Phone: " + $F{primaryPhone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SansSerif_Bold" x="0" y="0" width="175" height="20"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ssn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SansSerif_Bold" x="391" y="0" width="181" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{verified}.intValue() == 0 ? "Un-verified" : "Verified"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" x="329" y="20" width="243" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Demographics"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" positionType="Float" x="0" y="303" width="572" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Notes"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="329" y="80" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{ethnicity} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Race: " + $F{ethnicity}.getName()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="0" y="120" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{email} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Email: " + $F{email}]]></textFieldExpression>
+			</textField>
+			<subreport runToBottom="false">
+				<reportElement positionType="Float" x="0" y="323" width="572" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{noteListSize} > 0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$F{noteList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{subreportDir} + "/noteHistorySub.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="272" width="572" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{benefitTypeListSize} > 0]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="subreportDir">
+					<subreportParameterExpression><![CDATA[$P{subreportDir}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$F{benefitTypeList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{subreportDir} + "/benefitTypeSub.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="0" y="40" width="315" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{address1} != null || $F{address2} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Street Address: " + ReportUtil.concat2String($F{address1}, $F{address2}) +
+", " + $F{city} + ", " + $F{state} + " " + $F{zip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Bold" positionType="Float" x="0" y="252" width="572" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Benefit / Beneficiary"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="SansSerif_Normal" x="329" y="60" width="243" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[new Boolean($F{gender} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Gender: " + $F{gender}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="11" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement style="SansSerif_Normal" x="0" y="12" width="49" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SansSerif_Normal" x="49" y="12" width="280" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="styled"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" -   " + ReportUtil.formatLongDate(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

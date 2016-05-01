@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    
+    <!-- Include Struts 2 actions (modules)-->
+    <include file="struts-main.xml"/>
+    <!-- include file="struts-public.xml"/  - public register will not be available 12/12/2012. -->
+    <include file="struts-report.xml"/>
+    <include file="struts-data.xml"/>
+    
+</struts>
+

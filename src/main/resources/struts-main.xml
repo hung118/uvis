@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.excludePattern" value="/canary,/canary/.*"/>
+	
+	<package name="main" extends="struts-default" namespace="/">
+		
+		<interceptors>
+			<interceptor name="umdSecurity" class="gov.utah.dts.det.interceptor.UMDLoginInterceptor" />
+			<interceptor-stack name="umdStack">
+				<interceptor-ref name="umdSecurity" />
+				<interceptor-ref name="paramsPrepareParamsStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+        <!-- Default interceptor stack. -->
+        <default-interceptor-ref name="umdStack"/>
+		
+		<global-results>
+			<result name="umdLogin">/index.jsp</result>
+			<result name="errorSecurity">/WEB-INF/pages/error/errorSecurity.jsp</result>
+			<result name="error">/WEB-INF/pages/error/error.jsp</result>
+			<result name="landingPage" type="redirectAction">
+                <param name="actionName">sessionInit</param>
+                <param name="namespace">/</param>
+			</result>
+            <result name="dashboard" type="redirectAction">
+                <param name="actionName">Dashboard</param>
+                <param name="namespace">/</param>
+            </result>
+		</global-results>
+		
+	   	<global-exception-mappings>
+		 	<exception-mapping exception="gov.utah.dts.umd.SecurityBreachException" result="errorSecurity" />
+		 	<exception-mapping exception="java.lang.Exception" result="error" />
+	   	</global-exception-mappings>
+
+ 		<!-- actions -->
+ 		<action name="sessionInit" class="gov.utah.va.vts.action.SessionInitAction">
+			<result name="success">/WEB-INF/pages/home.jsp</result>
+			<result name="inactive">/jsp/inactive.jsp</result>
+        </action>
+        
+ 		<action name="*Dashboard" class="gov.utah.va.vts.action.DashboardAction" method="{1}">
+			<result name="success">/WEB-INF/pages/dashboard.jsp</result>
+        </action>
+
+ 		<action name="*User" class="gov.utah.va.vts.action.UserAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/user.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/user.jsp</result>
+        </action>
+        
+ 		<action name="*Rural" class="gov.utah.va.vts.action.RuralAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/rural.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/rural.jsp</result>
+        </action>
+        
+ 		<action name="*Ethnicity" class="gov.utah.va.vts.action.EthnicityAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/ethnicity.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/ethnicity.jsp</result>
+        </action>
+
+ 		<action name="*RecordType" class="gov.utah.va.vts.action.RecordTypeAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/recordType.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/recordType.jsp</result>
+        </action>
+        
+ 		<action name="*DecorationMedal" class="gov.utah.va.vts.action.DecorationMedalAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/decorationMedal.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/decorationMedal.jsp</result>
+        </action>
+        
+ 		<action name="*Relation" class="gov.utah.va.vts.action.RelationAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/relation.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/relation.jsp</result>
+        </action>
+        
+ 		<action name="*CombatZone" class="gov.utah.va.vts.action.CombatZoneAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/combatZone.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/combatZone.jsp</result>
+        </action>
+
+ 		<action name="*ServiceEra" class="gov.utah.va.vts.action.ServiceEraAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/serviceEra.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/serviceEra.jsp</result>
+        </action>
+
+ 		<action name="*ServiceBranch" class="gov.utah.va.vts.action.ServiceBranchAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/serviceBranch.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/serviceBranch.jsp</result>
+        </action>
+
+ 		<action name="*DischargeType" class="gov.utah.va.vts.action.DischargeTypeAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/dischargeType.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/dischargeType.jsp</result>
+        </action>
+        
+ 		<action name="*BenefitType" class="gov.utah.va.vts.action.BenefitTypeAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/benefitType.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/benefitType.jsp</result>
+        </action>
+        
+ 		<action name="*DocType" class="gov.utah.va.vts.action.DocTypeAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/admin/docType.jsp</result>
+        	<result name="success">/WEB-INF/pages/admin/docType.jsp</result>
+        </action>
+   
+ 		<action name="editCompareVeterans" class="gov.utah.va.vts.action.VeteranAction" method="editCompare">
+        	<result name="editCompare">/WEB-INF/pages/veteran/editCompareVeterans.jsp</result>
+        </action>
+
+ 		<action name="editCompareSsnVeterans" class="gov.utah.va.vts.action.VeteranAction" method="editCompareSsn">
+        	<result name="editCompare">/WEB-INF/pages/veteran/editCompareVeterans.jsp</result>
+        </action>
+
+ 		<action name="saveEditCompareVeterans" class="gov.utah.va.vts.action.VeteranAction" method="saveEditCompare">
+        	<result name="input">/WEB-INF/pages/veteran/editCompareVeterans.jsp</result>
+        	<result name="editCompare">/WEB-INF/pages/veteran/editCompareVeterans.jsp</result>
+        </action>  
+
+ 		<action name="*ShortForm" class="gov.utah.va.vts.action.ShortFormAction" method="{1}">
+ 			<result name="input">/WEB-INF/pages/veteran/shortForm.jsp</result>
+ 			<result name="success">/WEB-INF/pages/veteran/shortForm.jsp</result>
+        </action>	
+
+ 		<action name="*Veteran" class="gov.utah.va.vts.action.VeteranAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/veteran/veteran.jsp</result>
+        	<result name="success">/WEB-INF/pages/veteran/veteran.jsp</result>
+            <result name="searchResult" type="redirectAction">
+                <param name="actionName">displaySearchVeteranSearch</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="viewVeteran">/WEB-INF/pages/veteran/viewVeteran.jsp</result>
+            <result name="editCompare">/WEB-INF/pages/veteran/editCompareVeterans.jsp</result>
+        </action>
+        
+ 		<action name="*VeteranSearch" class="gov.utah.va.vts.action.VeteranSearchAction" method="{1}">
+        	<result name="input">/WEB-INF/pages/veteran/veteranSearch.jsp</result>
+        	<result name="searchVsoResult">/WEB-INF/pages/veteran/veteranSearchVso.jsp</result>
+        	<result name="success">/WEB-INF/pages/veteran/veteranSearch.jsp</result>
+        	<result name="searchStandardResult">/WEB-INF/pages/veteran/veteranSearch.jsp</result>
+        	<result name="searchAdhocResult">/WEB-INF/pages/veteran/veteranSearchAdhoc.jsp</result>
+        	<result name="reportList" type="redirectAction">
+                <param name="actionName">listReport</param>
+                <param name="namespace">/report</param>        	
+        	</result>
+            <result name="dashboard" type="redirectAction">
+                <param name="actionName">Dashboard</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+        
+ 		<action name="saveVeteranAttachments" class="gov.utah.va.vts.action.VeteranAction" method="saveAttachments">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10024000</param>
+				<!-- param name="allowedTypes">image/tiff,text/plain</param - see validate method-->
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+ 		
+ 			<result name="input">/WEB-INF/pages/error/errorUpload.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">editVeteran</param>
+                <param name="namespace">/</param>
+                <param name="id">${veteranId}</param>
+            </result>
+        </action>
+        
+ 		<action name="showAttachment" class="gov.utah.va.vts.action.VeteranAction" method="showAttachment" />
+ 		
+ 		<action name="deleteAttachment" class="gov.utah.va.vts.action.VeteranAction" method="deleteAttachment">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editVeteran</param>
+                <param name="namespace">/</param>
+                <param name="id">${veteranId}</param>
+            </result>
+        </action>
+ 			                
+	</package>
+	
+</struts>

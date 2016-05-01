@@ -1,0 +1,133 @@
+#leftTab {
+	float:left;
+}
+
+#rightTab {
+	float:right;
+}
+
+#lCurrentTab {
+	width:15px;
+	float:left;
+}
+#rCurrentTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#fbe7bd;
+}
+
+#lCTTab {
+	width:15px;
+	float:left;
+}
+#rCTTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#fce805;
+}
+
+#lDDTab {
+	width:15px;
+	float:left;
+}
+#rDDTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#bdd8fd;
+}
+
+#lDLTab {
+	width:15px;
+	float:left;
+}
+#rDLTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#befbdc;
+}
+
+#lDTTab {
+	width:15px;
+	float:left;
+}
+#rDTTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#a3d7e6;
+}
+
+#lDwsTab {
+	width:15px;
+	float:left;
+}
+#rDwsTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#f1b57b;
+}
+
+#lOnlineTab {
+	width:15px;
+	float:left;
+}
+#rOnlineTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#fad2d2;
+}
+
+#lManualTab {
+	width:15px;
+	float:left;
+}
+#rManualTab {
+	width:401px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#dfd0fe;
+}
+
+#lProposedTab {
+	width:15px;
+	float:left;
+}
+#rProposedTab {
+	width:430px;
+	float:left;
+	padding-top:8px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+	background-color:#e1e2e1;
+}

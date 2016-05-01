@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<allow>
+		<create creator="spring" javascript="VeteranService">
+			<param name="beanName" value="veteranServiceAjax" />
+			<include method="getVeteranServices" />
+			<include method="saveVeteranService" />
+			<include method="deleteVeteranService" />
+			<include method="copyVeteranService" />
+			<include method="checkDuplicateSsn" />
+		</create>
+		
+		<create creator="spring" javascript="VeteranBenefitType">
+			<param name="beanName" value="veteranBenefitTypeAjax" />
+			<include method="getVeteranBenefitTypes" />
+			<include method="saveVeteranBenefitType" />
+			<include method="deleteVeteranBenefitType" />
+			<include method="copyBenefitTypeRecipients" />
+		</create>
+		
+		<create creator="spring" javascript="VeteranBenefitRecipient">
+			<param name="beanName" value="veteranBenefitRecipientAjax" />
+			<include method="getVeteranBenefitRecipients" />
+			<include method="saveVeteranBenefitRecipient" />
+			<include method="deleteVeteranBenefitRecipient" />
+		</create>
+		
+		<convert converter="bean" match="gov.utah.va.vts.model.VeteranServicePeriod"/>
+		<convert converter="bean" match="gov.utah.va.vts.model.ServiceBranch" />
+		<convert converter="bean" match="gov.utah.va.vts.model.ServiceEra"/>
+		<convert converter="bean" match="gov.utah.va.vts.model.DischargeType"/>
+		
+		<convert converter="bean" match="gov.utah.va.vts.model.VeteranBenefit"/>
+		<convert converter="bean" match="gov.utah.va.vts.model.BenefitType"/>
+		
+		<convert converter="bean" match="gov.utah.va.vts.model.BenefitRecipient"/>
+		
+		<convert match="java.lang.Exception" converter="exception">
+  			<param name='include' value='message,lineNumber'/>
+		</convert>
+		
+		<convert converter="enum" match="gov.utah.va.vts.model.Veteran"/>
+		
+	</allow>
+
+</dwr>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="data" extends="struts-default" namespace="/data">
+        
+        <!-- Default interceptor stack. -->
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+		
+		<global-results>
+			<result name="error">/WEB-INF/pages/error/error.jsp</result>
+		</global-results>
+		
+	   	<global-exception-mappings>
+		 	<exception-mapping exception="java.lang.Exception" result="error" />
+	   	</global-exception-mappings>
+
+ 		<!-- actions -->
+		<!-- Struts 2 file upload sample - action name="csvFile" class="gov.utah.va.vts.action.DataImportAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">text/csv</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+
+			<result name="success">/WEB-INF/pages/dataImport/successCsvFile.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/csvFile.jsp</result>
+		</action -->
+        
+		<action name="*DriverLicense" class="gov.utah.va.vts.action.DriverLicenseImportAction" method="{1}">
+			<result name="success">/WEB-INF/pages/dataImport/driverLicense.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/driverLicense.jsp</result>
+		</action>
+		
+		<action name="*DriverLicenseFile" class="gov.utah.va.vts.action.DriverLicenseImportAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<!-- param name="allowedTypes">application/octet-stream</param -->
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		
+			<result name="success">/WEB-INF/pages/dataImport/driverLicenseFile.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/driverLicenseFile.jsp</result>
+		</action>
+		
+		<action name="*DWS" class="gov.utah.va.vts.action.DWSImportAction" method="{1}">
+			<result name="success">/WEB-INF/pages/dataImport/dws.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/dws.jsp</result>
+		</action>
+		
+		<action name="*DWSFile" class="gov.utah.va.vts.action.DWSImportAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">application/vnd.ms-excel</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		
+			<result name="success">/WEB-INF/pages/dataImport/dwsFile.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/dwsFile.jsp</result>
+		</action>
+		
+		<action name="*Registration" class="gov.utah.va.vts.action.RegistrationImportAction" method="{1}">
+			<result name="success">/WEB-INF/pages/dataImport/registration.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/registration.jsp</result>
+		</action>
+		
+		<!-- action name="*DocTek" class="gov.utah.va.vts.action.DocTekImportAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">30720</param>
+				<param name="allowedTypes">application/vnd.ms-excel</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		
+			<result name="success">/WEB-INF/pages/dataImport/docTek.jsp</result>
+			<result name="input">/WEB-INF/pages/dataImport/docTek.jsp</result>
+		</action-->
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,294 @@
+
+
+/* ------------------------------------------------   HTML   ------------------------------------------------ */
+h1 {
+	font-size:1.2em;
+	/*font-weight:bold;*/
+	font-weight: normal;
+	font-style: italic;
+	color:#CC0000;
+	margin-top:0px;
+}
+
+h2 { 
+	font-size:1.2em;
+	color: #CC0000;
+	font-weight: normal;
+	font-style:italic;
+	/*font-weight:bold;*/
+	/*color:#828281;*/
+	/*color:#454C9C;*/
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+h3 {
+	font-size:1em;
+	font-weight:bold;
+	/*color:#828281;*/
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+h4 {
+	font-size:1em;
+	font-weight:bold;
+	/*color:#828281;*/
+	margin-top:0px;
+	margin-bottom:13px;
+}
+
+
+/* ------------------------------------------------   Custom   ------------------------------------------------ */
+.linkOffsite{
+	/*background-color:#FF6600;*/
+	background:url(../../common/images/icons/iconOffsite.gif) no-repeat right center;
+	padding-right:24px;
+	margin-right:6px;
+}
+
+.linkRSS{
+	/*background-color:#FF6600;*/
+	background:url(../../common/images/icons/iconRss.gif) no-repeat right center;
+	padding-right:24px;
+	margin-right:6px;
+}
+
+
+.linkPDF {
+	/*background-color:#FF6600;*/
+	background:url(../../common/images/icons/pdf.gif) no-repeat right center;
+	padding-right:18px;
+	margin-right:6px;
+}
+
+.linkWord {
+	/*background-color:#FF6600;*/
+	background:url(../../common/images/icons/word.gif) no-repeat right center;
+	padding-right:18px;
+	margin-right:6px;
+}
+
+.linkExcel {
+	/*background-color:#FF6600;*/
+	background:url(../../common/images/icons/excel.gif) no-repeat right center;
+	padding-right:18px;
+	margin-right:6px;
+}
+
+.linkPowerPoint {
+	background:url(../../common/images/icons/powerPoint.gif) no-repeat right center;
+	padding-right:18px;
+	margin-right:6px;
+}
+
+.linkZip {
+	/*border:1px blue dashed;*/
+	background:url(../../common/images/icons/winZip.gif) no-repeat right center;
+	padding-right:18px;
+	margin-right:6px;
+}
+
+.whiteTopNav {
+	color: #FFFFFF;
+	size: 16px;
+}
+
+.picture {
+	margin: 5px;
+}
+
+.red a {
+	color: #F00;
+}
+
+.gray {
+	background-color: #E6E6E6;
+}
+
+/* ------------------------------------------------   Forms   ------------------------------------------------ */
+
+.beneficiaryBorder {
+	/*background-color:#00FF00;*/
+	width:368px;
+	float:right;
+	padding: 4px;
+	border: 1px #CCC solid;
+	/*background-color:#CCCCFF;*/
+	/*border:dashed 2px #00FF00;	*/
+	/*border-left:1px #D5D5D5 solid;*/
+}
+
+.mailingAddressBorder {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	width: 442px;
+	padding: 4px;
+	border: 1px #CCC solid;
+}
+
+.servicePeriodBorder {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	width: 100%;
+	padding: 4px;
+	border: 1px #CCC solid;
+}
+
+input {
+	border: 1px solid #999;
+	font-size: 13px;
+}
+
+.button {
+	border: none;
+	background-color: #666;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.chkbox {
+	border: 1px;
+}
+
+.primaryButton {
+	border: none;
+	background-color: #CC0000;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.secondaryButton {
+	border: none;
+	background-color: #000099;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.fieldset15 {
+	width: 15px;
+}
+
+.fieldset20 {
+	width: 20px;
+}
+	
+.fieldset25 {
+	width: 25px;
+}
+	
+.fieldset45 {
+	width: 45px;
+}
+
+.fieldset50 {
+	width: 50px;
+}
+	
+.fieldset75 {
+	width: 75px;
+}
+
+.fieldset95 {
+	width: 95px;
+}
+
+.fieldset100 {
+	width: 100px;
+}
+
+.fieldset120 {
+	width: 120px;
+}
+
+.fieldset125 {
+	width: 125px;
+}
+
+.fieldset135 {
+	width: 135px;
+}
+
+
+.fieldset150 {
+	width: 150px;
+}
+
+.fieldset175 {
+	width: 175px;
+}
+
+.fieldset200 {
+	width: 200px;
+}
+
+.fieldset225 {
+	width: 225px;
+}
+
+.fieldset250 {
+	width: 250px;
+}
+
+.fieldset275 {
+	width: 275px;
+}
+
+.fieldset290 {
+	width: 290px;
+}
+
+.fieldset340 {
+	width: 340px;
+}
+
+.fieldset350 {
+	width: 350px;
+}
+
+.fieldset370 {
+	width: 370px;
+}
+
+/** others */
+
+.errorMessage {
+	color: #FF6A6A;
+	font-style:italic;
+}
+
+.actionMessage {
+	color: #4F4FFF;
+	font-style:italic;
+}
+
+.veteranServicePeriod table {
+	border: 1px solid #666;
+	width: 100%;
+	margin: 10px 0 10px 0 !important;
+}
+
+.tableBorder {
+	border: 1px solid #666;	
+	margin: 10px 0 10px 0 !important;
+}
+
+#checkBoxList input, #radioButtonList input {
+	border: 1px none; 
+}
+
+.multiBox {
+  border: 1px solid #DADADA;
+  /*width: auto;*/
+  /*margin: 5px auto 5px 5px;
+  /*background-color: #C2C2C2;*/
+  /*padding: 2px 3px 3px 3px;*/
+  /*color: Blue;
+  font-size: 11px;*/  
+}
+
+.multiBox2 {
+  border: 1px solid #A6A6A6;
+  /*width: auto;*/
+}
+

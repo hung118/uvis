@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+    	<pattern>/home.jsp</pattern>
+    	<pattern>/jsp/*</pattern>
+        <pattern>/dwr/*</pattern>
+        <pattern>*.xls</pattern>
+        <pattern>/scripts/*</pattern>
+        <pattern>/images/*</pattern>
+        <pattern>/canary/*</pattern>
+    </excludes>
+
+    <decorator name="veteran" page="WEB-INF/decorators/veteranLayout.jsp">
+        <pattern>/WEB-INF/pages/veteran/*veteran*.jsp</pattern>
+        <pattern>/WEB-INF/pages/error/error.jsp</pattern>
+        <pattern>/WEB-INF/pages/error/errorReport.jsp</pattern>
+        <pattern>/WEB-INF/pages/error/errorSecurity.jsp</pattern>
+    </decorator>
+    
+    <decorator name="defaultLayout" page="WEB-INF/decorators/defaultLayout.jsp">
+        <pattern>/WEB-INF/pages/*</pattern>
+    </decorator>
+    
+</decorators>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!--
+		Conversion Characters:
+		 c - the category {n} where n is the number of right-most components - default is all
+		 C - the fully qualified class name - this is slow
+		 d - the date of the event - e.g. %d{dd MMM yyyy HH:mm:ss,SSS}
+		 		use the log4j formatters for significantly better performance
+		 			ABSOLUTE, DATE, or ISO8601 - e.g. %d{DATE}
+		 F - the originating file from which the log was issued - SLOW!
+		 l - the location of the caller which generated the event - SLOW!
+		 L - the line number of the caller which generated the event - SLOW!
+		 m - the application supplied message tied to the event
+		 M - the method name of the caller which generated the event - SLOW!
+		 n - the platform dependent line separator
+		 p - priority
+		 r - elapsed time from construction to creation of event (in ms)
+		 t - thread name
+		 x - nested diagnostic context
+		 X - mapped diagnostic context - requires that the client number key follow the parameter, as in %X{key}
+		 % - outputs a single % sign 
+ 	-->
+
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<!-- <layout class="org.apache.log4j.TTCCLayout" />   -->	
+			<layout class="org.apache.log4j.PatternLayout">
+      		<param name="ConversionPattern" value="%d{DATE} %-5p %c{1} - %m%n"/>
+    	</layout>
+	</appender>
+	
+	<appender name="logfile" class="org.apache.log4j.RollingFileAppender">
+    	<param name="file" value="${catalina.home}/logs/catalina_uvis.log"/>
+    	<param name="MaxFileSize" value="25600KB"/>
+    	<!-- Keep one backup file -->
+    	<param name="MaxBackupIndex" value="9"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+      		<param name="ConversionPattern" value="%d{DATE} %-5p %c{1} - %m%n"/>
+    	</layout>
+	</appender>
+	
+	<appender name="timefile" class="org.apache.log4j.RollingFileAppender">
+    	<param name="file" value="${catalina.home}/logs/catalina_uvis.log"/>
+    	<param name="MaxFileSize" value="25600KB"/>
+    	<!-- Keep one backup file -->
+    	<param name="MaxBackupIndex" value="9"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+      		<param name="ConversionPattern" value="%m%n"/>
+    	</layout>
+	</appender>
+
+	<!-- log detail configuration -->
+	
+	<!-- 
+		OFF - OFF has the highest possible rank and is intended to turn off logging.
+		INFO - Informational messages that highlight the progress of the application at coarse-grained level.
+		DEBUG - Fine-grained informational events that are most useful to debug an application.
+		TRACE - Finer-grained informational events than DEBUG
+		WARN - Potentially harmful situations.
+		ERROR - Error events that might still allow the application to continue running.
+		FATAL - Very severe error events that will presumably lead the application to abort.
+		ALL - Lowest possible rank and is intended to turn on all logging. 
+	 -->
+
+	<logger name="freemarker">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="gov.utah">
+		<level value="ERROR" />		
+	</logger>
+	
+	<logger name="timer">
+		<level value="fatal" />
+		<appender-ref ref="timefile" />
+				
+	</logger>
+	
+	<logger name="jxl">
+		<level value="ERROR" />		
+	</logger>
+	<logger name="jxl.biff">
+		<level value="ERROR" />		
+	</logger>
+	
+	<logger name="org.hibernate">
+		<level value="ERROR" />		
+	</logger>
+
+    <logger name="org.apache.struts2.components.URL">
+		<level value="ERROR" />
+	</logger>
+	
+	<!-- ignore warning message from display tag lib sorting columns -->
+    <logger name="com.opensymphony.xwork2">
+		<level value="ERROR" />
+	</logger>
+	
+	<root>
+		<level value="INFO"/>
+		<appender-ref ref="stdout" />
+		<appender-ref ref="logfile" />
+	</root>
+	
+</log4j:configuration>

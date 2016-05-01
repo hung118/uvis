@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/security 
+			http://www.springframework.org/schema/security/spring-security-2.0.xsd"
+	default-autowire="byName"
+	default-lazy-init="false">
+	
+	<bean id="springSecurityFilterChain" class="org.springframework.security.util.FilterChainProxy">
+		<security:filter-chain-map path-type="ant">
+			<security:filter-chain pattern="/images/**" filters="none"/>
+			<security:filter-chain pattern="/scripts/**" filters="none"/>
+			<security:filter-chain pattern="/styles/**" filters="none"/>
+			<security:filter-chain pattern="/security/**" filters="none"/>
+			<security:filter-chain pattern="/public/**" filters="none"/>
+			<security:filter-chain pattern="/**" filters="devUMDSecurityFilter,contextIntegrationFilter,preAuthFilter,securityContextHolderFilter,exceptionTranslationFilter,filterInvocationInterceptor"/>
+		</security:filter-chain-map>
+	</bean>
+	
+	<bean id="devUMDSecurityFilter" class="gov.utah.dts.det.util.DevUMDSecurityFilter"/>
+	
+	<bean id="entryPoint" class="org.springframework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint" />
+    
+    <!-- Filters -->
+    <bean id="contextIntegrationFilter" class="org.springframework.security.context.HttpSessionContextIntegrationFilter"/>
+    
+	<bean id="preAuthFilter" class="org.springframework.security.ui.preauth.header.RequestHeaderPreAuthenticatedProcessingFilter">
+		<security:custom-filter position="PRE_AUTH_FILTER" />
+		<property name="principalRequestHeader" value="email"/>
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+	
+	<bean id="securityContextHolderFilter" class="org.springframework.security.wrapper.SecurityContextHolderAwareRequestFilter">
+		<property name="wrapperClass" value="org.springframework.security.wrapper.SecurityContextHolderAwareRequestWrapper"/>
+	</bean>
+	
+<!--	<bean id="anonymousProcessingFilter" class="org.springframework.security.providers.anonymous.AnonymousProcessingFilter">-->
+<!--		<property name="key" value="anonymous"/>-->
+<!--		<property name="userAttribute" value="ANONYMOUS_USER,ROLE_ANONYMOUS"/>-->
+<!--	</bean>-->
+	
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="entryPoint"/>
+	</bean>
+
+	<bean id="filterInvocationInterceptor" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="httpRequestAccessDecisionManager" />
+		<property name="objectDefinitionSource">
+			<!-- something here? -->
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+					/secure/**=ROLE_ADMIN
+			</value>
+		</property>
+	</bean>
+
+	<bean id="preauthAuthProvider" class="org.springframework.security.providers.preauth.PreAuthenticatedAuthenticationProvider">
+		<security:custom-authentication-provider />      
+		<property name="preAuthenticatedUserDetailsService">
+			<bean id="userDetailsServiceWrapper" class="org.springframework.security.userdetails.UserDetailsByNameServiceWrapper">
+				<property name="userDetailsService" ref="userDetailsService"/>
+			</bean>    
+		</property>
+	</bean>
+
+	<security:authentication-manager alias="authenticationManager" />
+    
+    <!-- bean id="userDetailsService" class=" DETAILS SERVICE CLASS "/-->
+    <!--
+    <bean id="accessDeniedHandler" class=" HANDLER CLASS ">
+    	<property name="errorPage" value="/WEB-INF/jsps/security/error.jsp"/>
+    </bean>
+    -->
+    
+    <bean id="httpRequestAccessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+	        <list>
+                <ref bean="roleVoter"/>
+	        </list>
+	    </property>
+    </bean>
+    
+    <bean id="roleVoter" class="org.springframework.security.vote.RoleVoter"/>
+	
+<!---->
+<!--	<bean id="anonymousAuthenticationProvider" class="org.springframework.security.providers.anonymous.AnonymousAuthenticationProvider">-->
+<!--		<property name="key" value="anonymous"/>-->
+<!--	</bean>-->
+</beans>

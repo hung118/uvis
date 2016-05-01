@@ -1,0 +1,45 @@
+<!-- Spring configuration for Struts2 2.1.8, Srping 2.5.6, and Quartz 1.6.3 -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 1) Scheduler task -->
+	<bean name="schedulerTask" class="gov.utah.va.vts.quartz.SchedulerTask" />
+
+	<!-- 2) Scheduler job -->
+	<bean name="schedulerJob_RegistrationImport" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="gov.utah.va.vts.quartz.SchedulerJob_RegistrationImport" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="schedulerTask" value-ref="schedulerTask" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- 3) Cron Trigger - format http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger -->
+	<bean id="cronTrigger_RegistrationImport" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="schedulerJob_RegistrationImport" />
+		<property name="cronExpression" value="0 0 6 * * ?" />
+	</bean>
+
+	<!-- 4) Scheduler -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="schedulerJob_RegistrationImport" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger_RegistrationImport" />
+			</list>
+		</property>
+		<property name="applicationContextSchedulerContextKey">
+			<value>applicationContext</value>
+		</property>
+		<property name="waitForJobsToCompleteOnShutdown" value="true" />	
+	</bean>
+    
+</beans>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mailingList" pageWidth="572" pageHeight="752" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="gov.utah.dts.det.util.*"/>
+	<style name="SansSerif_Normal" isDefault="true" forecolor="#000000" backcolor="#FFFFFF" fontName="SansSerif" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="SansSerif_Bold" style="SansSerif_Normal" fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SansSerif_Small" style="SansSerif_Normal" fontSize="8"/>
+	<style name="SansSerif_Large" style="SansSerif_Normal" forecolor="#660000" fontName="SansSerif" fontSize="14" isBold="true"/>
+	<style name="SansSerif_Section" style="SansSerif_Normal" mode="Opaque" forecolor="#FFFFFF" backcolor="#660000" fontName="SansSerif" fontSize="10"/>
+	<field name="firstName" class="java.lang.String"/>
+	<field name="lastName" class="java.lang.String"/>
+	<field name="address1" class="java.lang.String"/>
+	<field name="address2" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="zip" class="java.lang.String"/>
+	<field name="mailingAddr1" class="java.lang.String"/>
+	<field name="mailingAddr2" class="java.lang.String"/>
+	<field name="mailingCity" class="java.lang.String"/>
+	<field name="mailingState" class="java.lang.String"/>
+	<field name="mailingZip" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="0" y="0" width="572" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Veteran Tracking System]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SansSerif_Normal" x="0" y="20" width="572" height="20"/>
+				<textElement textAlignment="Center" markup="styled"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["<style isBold=\"true\">Date:</style> " + ReportUtil.formatDate(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="0" y="40" width="150" height="20"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="150" y="40" width="175" height="20"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="325" y="40" width="110" height="20"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[City]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="497" y="40" width="75" height="20"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Zip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SansSerif_Bold" x="435" y="40" width="62" height="20"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[State]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="150" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[ReportUtil.concat2String($F{firstName}, $F{lastName})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="0" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{mailingAddr1} != null || $F{mailingAddr2} != null) ?
+$F{mailingCity} :
+$F{city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="62" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{mailingAddr1} != null || $F{mailingAddr2} != null) ?
+$F{mailingState} :
+$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="175" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{mailingAddr1} != null || $F{mailingAddr2} != null) ?
+ReportUtil.concat2String($F{mailingAddr1}, $F{mailingAddr2}) :
+ReportUtil.concat2String($F{address1}, $F{address2})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="75" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{mailingAddr1} != null || $F{mailingAddr2} != null) ?
+$F{mailingZip} :
+$F{zip}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

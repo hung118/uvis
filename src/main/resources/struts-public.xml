@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- Configuration -->
+	<package name="public" extends="struts-default" namespace="/public">
+
+        <!-- Default interceptor stack. -->
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+		
+		<global-results>
+			<result name="error">/WEB-INF/pages/error/errorPublic.jsp</result>
+		</global-results>
+		
+	   	<global-exception-mappings>
+		 	<exception-mapping exception="java.lang.Exception" result="error" />
+	   	</global-exception-mappings>
+
+ 		<!-- actions -->
+ 		<action name="*Register" class="gov.utah.va.vts.action.RegisterAction" method="{1}">
+ 			<result name="input">/WEB-INF/pages/register.jsp</result>
+            <result name="success">/WEB-INF/pages/register.jsp</result>
+            <result name="confirmRegister">/WEB-INF/pages/confirm_register.jsp</result>
+        </action>	
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="report" extends="struts-default" namespace="/report">
+		<!-- Jasper third party integration -->
+        <result-types>
+            <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+        </result-types>
+        
+        <!-- Default interceptor stack. -->
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+		
+		<global-results>
+			<result name="error">/WEB-INF/pages/error/errorReport.jsp</result>
+		</global-results>
+		
+	   	<global-exception-mappings>
+		 	<exception-mapping exception="java.lang.Exception" result="error" />
+	   	</global-exception-mappings>
+
+ 		<!-- actions -->
+ 		<action name="scoreCardReport" class="gov.utah.va.vts.action.ReportAction" method="scoreCard">
+ 			<result name="success">/WEB-INF/pages/reports/scoreCard.jsp</result>
+ 		</action>
+ 		<action name="generateScoreCardReport" class="gov.utah.va.vts.action.ReportAction" method="generateScoreCard">
+            <result name="input">/WEB-INF/pages/reports/scoreCard.jsp</result>
+            <result name="scoreCardReport" type="jasper">
+                <param name="location">/WEB-INF/jasper/scoreCardReport.jasper</param>
+                <param name="dataSource">scoreCard</param>
+                <param name="format">PDF</param>
+                <param name="contentType">application/pdf</param>
+                <param name="contentDisposition">filename="scoreCardReport.pdf"</param>
+            </result>
+        </action>
+        
+ 		<action name="zipMailingListReport" class="gov.utah.va.vts.action.ReportAction" method="zipMailingList">
+ 			<result name="success">/WEB-INF/pages/reports/zipMailingList.jsp</result>
+ 		</action>
+ 		<action name="generateZipMailingListReport" class="gov.utah.va.vts.action.ReportAction" method="generateZipMailingList">
+ 			<result name="input">/WEB-INF/pages/reports/zipMailingList.jsp</result>
+            <result name="zipMailingList" type="jasper">
+                <param name="location">/WEB-INF/jasper/zipMailingList.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">XLS</param>
+                <param name="contentType">application/xls</param>
+                <param name="contentDisposition">filename="zipMailingList.xls"</param>
+            </result>
+ 		</action>
+ 		
+ 		<action name="emailListReport" class="gov.utah.va.vts.action.ReportAction" method="emailList">
+ 			<result name="success">/WEB-INF/pages/reports/emailList.jsp</result>
+ 		</action>
+ 		<action name="generateEmailListReport" class="gov.utah.va.vts.action.ReportAction" method="generateEmailList">
+ 			<result name="input">/WEB-INF/pages/reports/emailList.jsp</result>
+            <result name="emailList" type="jasper">
+                <param name="location">/WEB-INF/jasper/emailList.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">XLS</param>
+                <param name="contentType">application/xls</param>
+                <param name="contentDisposition">filename="emailList.xls"</param>
+            </result>
+ 		</action>
+ 		
+ 		<action name="emailRandomReport" class="gov.utah.va.vts.action.ReportAction" method="emailRandom">
+ 			<result name="success">/WEB-INF/pages/reports/emailRandom.jsp</result>
+ 		</action>
+ 		<action name="generateEmailRandomReport" class="gov.utah.va.vts.action.ReportAction" method="generateEmailRandom">
+ 			<result name="input">/WEB-INF/pages/reports/emailRandom.jsp</result>
+            <result name="emailRandom" type="jasper">
+                <param name="location">/WEB-INF/jasper/emailRandom.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">XLS</param>
+                <param name="contentType">application/xls</param>
+                <param name="contentDisposition">filename="emailRandom.xls"</param>
+            </result>
+ 		</action>
+
+ 		<action name="*Report" class="gov.utah.va.vts.action.ReportAction" method="{1}">
+        	<result name="success">/WEB-INF/pages/reports/reportList.jsp</result>
+        	<result name="forwardToSearch" type="redirectAction">
+                <param name="actionName">submitSearchVeteranSearch</param>
+                <param name="namespace">/</param>        	
+        	</result>
+            <result name="mailingList" type="jasper">
+                <param name="location">/WEB-INF/jasper/mailingList.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">XLS</param>
+                <param name="contentType">application/xls</param>
+                <param name="contentDisposition">filename="mailingList.xls"</param>
+            </result>
+            <result name="pdfReport" type="jasper">
+                <param name="location">/WEB-INF/jasper/pdfReport.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">PDF</param>
+                <param name="contentType">application/pdf</param>
+                <param name="contentDisposition">filename="pdfReport.pdf"</param>
+            </result>
+            <result name="pdfReportImage" type="jasper">
+                <param name="location">/WEB-INF/jasper/pdfReportImage.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">PDF</param>
+                <param name="contentType">application/pdf</param>
+                <param name="contentDisposition">filename="pdfReportImage.pdf"</param>
+            </result>
+            <result name="xlsReport" type="jasper"> 
+                <param name="location">/WEB-INF/jasper/xlsReport.jasper</param>
+                <param name="dataSource">veterans</param>
+                <param name="format">XLS</param>
+                <param name="contentType">application/xls</param>
+                <param name="contentDisposition">filename="xlsReport.xls"</param>
+            </result>
+        </action>
+        
+	</package>
+	
+</struts>
