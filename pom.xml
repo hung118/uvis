@@ -219,11 +219,11 @@
 		</dependency>
 		
 		<!-- Utah state DTS application monitor -->
-		<dependency>
+		<!-- dependency>
 			<groupId>gov.utah.dts.canary</groupId>
 			<artifactId>dts-canary</artifactId>
 			<version>3.1.0.RELEASE</version>
-		</dependency>
+		</dependency -->
 		
 		<!-- mail, logs, and others -->
 		<dependency>

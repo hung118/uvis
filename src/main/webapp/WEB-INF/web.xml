@@ -22,9 +22,9 @@
 		<listener-class>gov.utah.va.vts.quartz.QuartzServletContextListener</listener-class>
 	</listener>
 
-	<listener>
+	<!-- listener>
 		<listener-class>gov.utah.dts.det.util.CanaryListener</listener-class>
-	</listener>
+	</listener -->
 	
 	<listener>
 		<listener-class>org.apache.struts2.dispatcher.ng.listener.StrutsListener</listener-class>

@@ -1,1 +1,6 @@
 /artifactory-build.xml
+/build/
+/target/
+/.settings/
+/.classpath
+/.project

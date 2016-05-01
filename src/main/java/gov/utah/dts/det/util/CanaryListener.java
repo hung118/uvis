@@ -1,12 +1,12 @@
 package gov.utah.dts.det.util;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import gov.utah.dts.canary.property.CanaryProperties;
-import gov.utah.dts.canary.property.DatabaseProperties;
+//import gov.utah.dts.canary.property.CanaryProperties;
+//import gov.utah.dts.canary.property.DatabaseProperties;
 
-import javax.servlet.ServletContext;
+//import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -22,22 +22,22 @@ public class CanaryListener implements ServletContextListener {
 
 	private Log logger = org.apache.commons.logging.LogFactory.getLog(this.getClass());
 	
-	private ServletContext context;
-	private String ADDITIONAL_OBJECT = "additionalCanaryServlet";
+	//private ServletContext context;
+	//private String ADDITIONAL_OBJECT = "additionalCanaryServlet";
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		logger.info("CanaryListener start ...");
 		
-		context = sce.getServletContext();
-		CanaryProperties cp = new CanaryProperties();
+		//context = sce.getServletContext();
+		//CanaryProperties cp = new CanaryProperties();
 		
 		try {
-			buildProperties(cp);
+			//buildProperties(cp);
 		} catch (Exception e) {
 			logger.warn("Problem of creating lists in CanaryListener: ", e);
 		} finally {
-			context.setAttribute(ADDITIONAL_OBJECT, cp);
+			//context.setAttribute(ADDITIONAL_OBJECT, cp);
 		}
 	}
 
@@ -46,6 +46,7 @@ public class CanaryListener implements ServletContextListener {
 		logger.info("CanaryListener destroyed.");
 	}
 
+	/*
 	private void buildProperties(CanaryProperties cp) {
 		cp.setDatabase(getDatabaseProperties());
 		cp.setEndpoint(getEndPointProperties());
@@ -76,5 +77,5 @@ public class CanaryListener implements ServletContextListener {
 		
 		return urlList;
 	}
-	
+	*/
 }
